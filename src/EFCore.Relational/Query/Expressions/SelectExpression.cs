@@ -1479,7 +1479,7 @@ namespace Microsoft.EntityFrameworkCore.Query.Expressions
         ///     The new default query SQL generator.
         /// </returns>
         public virtual IQuerySqlGenerator CreateDefaultQuerySqlGenerator()
-            => Dependencies.QuerySqlGeneratorFactory.CreateDefault(this);
+            => Dependencies.QuerySqlGeneratorFactory.CreateDefault(Clone());
 
         /// <summary>
         ///     Creates the FromSql query SQL generator.
@@ -1494,7 +1494,7 @@ namespace Microsoft.EntityFrameworkCore.Query.Expressions
             [NotNull] Expression arguments)
             => Dependencies.QuerySqlGeneratorFactory
                 .CreateFromSql(
-                    this,
+                    Clone(),
                     Check.NotEmpty(sql, nameof(sql)),
                     Check.NotNull(arguments, nameof(arguments)));
 
